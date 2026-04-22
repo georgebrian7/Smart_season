@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+
+{% block title %}My Tasks - Django Auth System{% endblock %}
+
+{% block page_header %}
+<div class="page-header">
+    <div class="container">
+        <h1><i class="bi bi-check-circle"></i> My Tasks</h1>
+        <p>View and manage your assigned tasks</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="input-group">
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Search tasks..."
+            >
+            <button class="btn btn-outline-primary" type="button">
+                <i class="bi bi-search"></i> Search
+            </button>
+        </div>
+    </div>
+    <div class="col-md-4 text-end">
+        <select class="form-select">
+            <option>All Tasks</option>
+            <option>Not Started</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+        </select>
+    </div>
+</div>
+
+<!-- Task Statistics -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <h3>8</h3>
+            <p>Total Tasks</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+            <h3>2</h3>
+            <p>In Progress</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stat-card" style="background: linear-gradient(135deg, #27ae60, #229954);">
+            <h3>6</h3>
+            <p>Completed</p>
+        </div>
+    </div>
+</div>
+
+<!-- Not Started Tasks -->
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="bi bi-clock"></i> Not Started
+    </div>
+    <div class="card-body">
+        <div class="list-group list-group-flush">
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between align-items-start">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">#T003 - Customer Follow-up</h6>
+                        <p class="mb-2 text-muted">Contact customer regarding recent inquiry</p>
+                        <small class="text-muted">
+                            <i class="bi bi-calendar"></i> Due: 2024-01-28
+                            <span class="ms-3">
+                                <i class="bi bi-map"></i> Location: Downtown Office
+                            </span>
+                        </small>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-play"></i> Start
+                    </button>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between align-items-start">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">#T004 - Training Session</h6>
+                        <p class="mb-2 text-muted">Attend new system training at HQ</p>
+                        <small class="text-muted">
+                            <i class="bi bi-calendar"></i> Due: 2024-01-30
+                            <span class="ms-3">
+                                <i class="bi bi-map"></i> Location: Headquarters
+                            </span>
+                        </small>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-play"></i> Start
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- In Progress Tasks -->
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="bi bi-hourglass-split"></i> In Progress
+    </div>
+    <div class="card-body">
+        <div class="list-group list-group-flush">
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between align-items-start">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">#T001 - Site Survey - Location A</h6>
+                        <div class="progress mb-2" style="height: 6px;">
+                            <div class="progress-bar" style="width: 65%"></div>
+                        </div>
+                        <p class="mb-2 text-muted">Complete comprehensive site survey (65% done)</p>
+                        <small class="text-muted">
+                            <i class="bi bi-calendar"></i> Due: 2024-01-25
+                            <span class="ms-3">
+                                <i class="bi bi-map"></i> Location: Industrial Zone
+                            </span>
+                        </small>
+                    </div>
+                    <div class="dropdown ms-2">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Update Progress</a></li>
+                            <li><a class="dropdown-item" href="#">Add Notes</a></li>
+                            <li><a class="dropdown-item" href="#">Mark Complete</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#">Postpone</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between align-items-start">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">#T002 - Equipment Inspection</h6>
+                        <div class="progress mb-2" style="height: 6px;">
+                            <div class="progress-bar" style="width: 45%"></div>
+                        </div>
+                        <p class="mb-2 text-muted">Inspect all field equipment (45% done)</p>
+                        <small class="text-muted">
+                            <i class="bi bi-calendar"></i> Due: 2024-01-26
+                            <span class="ms-3">
+                                <i class="bi bi-map"></i> Location: Equipment Yard
+                            </span>
+                        </small>
+                    </div>
+                    <div class="dropdown ms-2">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Update Progress</a></li>
+                            <li><a class="dropdown-item" href="#">Add Notes</a></li>
+                            <li><a class="dropdown-item" href="#">Mark Complete</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#">Postpone</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Completed Tasks -->
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="bi bi-check-lg"></i> Completed
+    </div>
+    <div class="card-body">
+        <div class="list-group list-group-flush">
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1 text-success"><i class="bi bi-check-circle-fill"></i> #T005 - Weekly Report</h6>
+                        <small class="text-muted">Completed on: 2024-01-20</small>
+                    </div>
+                    <button class="btn btn-sm btn-outline-info">
+                        <i class="bi bi-eye"></i> View
+                    </button>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1 text-success"><i class="bi bi-check-circle-fill"></i> #T006 - Client Meeting</h6>
+                        <small class="text-muted">Completed on: 2024-01-19</small>
+                    </div>
+                    <button class="btn btn-sm btn-outline-info">
+                        <i class="bi bi-eye"></i> View
+                    </button>
+                </div>
+            </div>
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1 text-success"><i class="bi bi-check-circle-fill"></i> #T007 - Data Entry</h6>
+                        <small class="text-muted">Completed on: 2024-01-18</small>
+                    </div>
+                    <button class="btn btn-sm btn-outline-info">
+                        <i class="bi bi-eye"></i> View
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-sm btn-outline-secondary">Show More Completed Tasks</button>
+        </div>
+    </div>
+</div>
+
+<!-- Task Details Modal -->
+<div class="modal fade" id="taskDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Task Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <h6>Task ID: #T001</h6>
+                    <h5>Site Survey - Location A</h5>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Description:</strong></p>
+                    <p>Complete comprehensive site survey including measurements and photographic documentation.</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Due Date:</strong> 2024-01-25</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Priority:</strong> <span class="badge" style="background-color: #e74c3c;">High</span></p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Location:</strong> Industrial Zone, Building A</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Notes:</strong></p>
+                    <p>Remember to check structural integrity and document any issues found.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

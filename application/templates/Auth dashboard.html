@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Django Auth System{% endblock %}
+
+{% block page_header %}
+<div class="page-header">
+    <div class="container">
+        <h1><i class="bi bi-speedometer2"></i> Admin Dashboard</h1>
+        <p>Welcome back, {{ user.first_name|default:user.username }}!</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Sidebar -->
+    <div class="col-lg-3">
+        <div class="sidebar">
+            <h5 class="mb-3"><i class="bi bi-list"></i> Quick Links</h5>
+            <div class="sidebar-item active">
+                <a href="{% url 'auth:admin_dashboard' %}">
+                    <i class="bi bi-speedometer2"></i> Dashboard
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{% url 'auth:manage_users' %}">
+                    <i class="bi bi-people"></i> Manage Users
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{% url 'auth:search_users' %}">
+                    <i class="bi bi-search"></i> Search Users
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{% url 'auth:activity_log' %}">
+                    <i class="bi bi-clock-history"></i> Activity Log
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{% url 'auth:export_users' %}">
+                    <i class="bi bi-download"></i> Export Users
+                </a>
+            </div>
+            <div class="sidebar-item">
+                <a href="{% url 'auth:profile' %}">
+                    <i class="bi bi-person"></i> My Profile
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-lg-9">
+        <!-- Statistics Cards -->
+        <div class="row">
+            <!-- Total Users -->
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <div style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">
+                        <i class="bi bi-people" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <h3>{{ total_users }}</h3>
+                    <p>Total Users</p>
+                </div>
+            </div>
+
+            <!-- Field Agents -->
+            <div class="col-md-4">
+                <div class="stat-card" style="background: linear-gradient(135deg, #27ae60, #229954);">
+                    <div style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">
+                        <i class="bi bi-person-check" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <h3>{{ field_agents }}</h3>
+                    <p>Field Agents</p>
+                </div>
+            </div>
+
+            <!-- Administrators -->
+            <div class="col-md-4">
+                <div class="stat-card" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                    <div style="color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;">
+                        <i class="bi bi-shield-check" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <h3>{{ admins }}</h3>
+                    <p>Administrators</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <i class="bi bi-lightning"></i> Quick Actions
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <a href="{% url 'auth:manage_users' %}" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-people"></i> Manage Users
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <a href="{% url 'auth:search_users' %}" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-search"></i> Search Users
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <a href="{% url 'auth:activity_log' %}" class="btn btn-outline-info w-100">
+                            <i class="bi bi-clock-history"></i> View Activity
+                        </a>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <a href="{% url 'auth:export_users' %}" class="btn btn-outline-success w-100">
+                            <i class="bi bi-download"></i> Export Data
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Users -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <i class="bi bi-clock-history"></i> Recent Users
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Date Joined</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="bi bi-person-circle"></i> john_admin
+                                </td>
+                                <td>john@example.com</td>
+                                <td><span class="badge badge-admin">Administrator</span></td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>2024-01-15 10:30</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="bi bi-person-circle"></i> agent_mike
+                                </td>
+                                <td>mike@example.com</td>
+                                <td><span class="badge badge-field-agent">Field Agent</span></td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>2024-01-14 14:20</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="bi bi-person-circle"></i> agent_sarah
+                                </td>
+                                <td>sarah@example.com</td>
+                                <td><span class="badge badge-field-agent">Field Agent</span></td>
+                                <td><span class="badge badge-inactive">Inactive</span></td>
+                                <td>2024-01-13 09:15</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{% url 'auth:manage_users' %}" class="btn btn-sm btn-outline-primary">
+                        View All Users
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Information -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <i class="bi bi-info-circle"></i> System Information
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Your Role:</strong> <span class="badge badge-admin">{{ user.get_role_display }}</span></p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <p><strong>Last Login:</strong> {{ user.last_login|date:"Y-m-d H:i" }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Account Status:</strong> <span class="badge badge-active">Active</span></p>
+                        <p><strong>Member Since:</strong> {{ user.date_joined|date:"Y-m-d" }}</p>
+                        <p><strong>Staff Status:</strong> <span class="badge badge-admin">Yes</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
