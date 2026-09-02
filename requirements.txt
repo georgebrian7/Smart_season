@@ -2,9 +2,10 @@ Django==4.2.0
 djangorestframework==3.14.0
 python-dotenv==1.0.0
 psycopg2-binary==2.9.6
-Flask==2.3.0
-Flask-RESTful==0.3.10
-Flask-SQLAlchemy==3.0.0
+# Flask packages removed (this is a Django project)
+# Flask==2.3.0
+# Flask-RESTful==0.3.10
+# Flask-SQLAlchemy==3.0.0
 SQLAlchemy==2.0.0
 requests==2.31.0
 Pillow==9.5.0
