@@ -2,81 +2,41 @@
 
 SmartSeason Field Monitoring System
 
-## 📋 Project Overview
+## Quickstart (development)
 
-SmartSeason is a field monitoring system designed to provide intelligent seasonal data collection and analysis for agricultural and environmental applications.
+1. Clone the repository
 
-## 🏗️ Project Structure
-
-```
-Smart_season/
-├── application/
-│   └── templates/
-│       └── index.html       # Main web interface
-├── README.md                # Project documentation
-└── [Other components]
+```bash
+git clone https://github.com/georgebrian7/Smart_season.git
+cd Smart_season
 ```
 
-## 💻 Tech Stack
+2. Create and activate a Python virtual environment
 
-- **Frontend**: HTML (80.8%)
-- **Backend**: Python (19.2%)
+```bash
+python -m venv venv
+source venv/bin/activate    # Windows: venv\Scripts\activate
+```
 
-## ✨ Features
+3. Install dependencies
 
-- Field monitoring capabilities
-- Data collection and management
-- Web-based user interface
+```bash
+pip install -r requirements.txt
+```
 
-## 📊 Progress Status
+4. (Optional) Create a .env file at the project root to override defaults. See `.env.example` for suggested variables.
 
-- [x] Project initialization
-- [x] Basic web interface setup
-- [ ] Backend integration
-- [ ] Database implementation
-- [ ] Real-time data monitoring
-- [ ] Analytics dashboard
-- [ ] Mobile responsiveness
+5. Apply migrations and run the development server
 
-## 🚀 Getting Started
+```bash
+python manage.py migrate
+python manage.py createsuperuser   # optional
+python manage.py runserver
+```
 
-### Prerequisites
-- Python 3.x
-- A modern web browser
+6. Open http://127.0.0.1:8000/ in your browser.
 
-### Installation
+Notes
+- This is a Django project. The README previously referenced `python app.py` which is not applicable — use `manage.py` as shown above.
+- The project ships a local sqlite database (`db.sqlite3`) for convenience in development. For production, set `DATABASE_URL` to a Postgres (or other) database in your environment.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/georgebrian7/Smart_season.git
-   cd Smart_season
-   ```
-
-2. Install dependencies (if applicable):
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Run the application:
-   ```bash
-   python app.py
-   ```
-
-4. Open your browser and navigate to the web interface
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to open issues and submit pull requests.
-
-## 📝 License
-
-This project is currently unlicensed. Please add a license file if needed.
-
-## 📧 Contact
-
-For questions or feedback, please contact the project owner.
-
----
-
-**Last Updated**: August 24, 2026
-**Repository**: https://github.com/georgebrian7/Smart_season
