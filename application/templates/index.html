@@ -1,20 +1,55 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartSeason</title>
-</head>
-<body>
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/login/">Login</a> |
-        <a href="/register/">Register</a>
-    </nav>
-    <main>
-        <h1>Welcome to SmartSeason</h1>
-        <p>Field monitoring system. Use the links above to log in or register.</p>
-    </main>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Dashboard - SmartSeason{% endblock %}
+{% block content %}
+<div class="row g-3">
+  <div class="col-12 col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h6 class="card-title text-muted">Fields Monitored</h6>
+        <h2 class="mb-0">{{ fields_count }}</h2>
+        <small class="text-muted">Updated just now</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h6 class="card-title text-muted">Active Sensors</h6>
+        <h2 class="mb-0">{{ sensors_count }}</h2>
+        <small class="text-muted">Real-time</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h6 class="card-title text-muted">Alerts</h6>
+        <h2 class="mb-0 text-danger">{{ alerts_count }}</h2>
+        <small class="text-muted">Critical in last 24h</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="mt-4">
+  <div class="card">
+    <div class="card-body">
+      <canvas id="analyticsChart" height="80"></canvas>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const ctx = document.getElementById('analyticsChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    datasets: [{ label: 'Sensor readings', data: [12,19,8,17,23,20,14], borderColor:'#2B6CB0', backgroundColor:'rgba(43,108,176,0.08)', tension:0.3 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false }
+});
+</script>
+{% endblock %}

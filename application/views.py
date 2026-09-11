@@ -9,7 +9,13 @@ from .permissions import admin_required, field_agent_required, admin_or_field_ag
  
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    # Simple dashboard metrics (placeholders) — replace with real queries as the models are defined
+    context = {
+        'fields_count': 12,
+        'sensors_count': 48,
+        'alerts_count': 3,
+    }
+    return render(request, 'index.html', context)
 
 def login_view(request):
     """
@@ -72,5 +78,3 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'You have been logged out successfully.')
     return redirect('auth:login')
- 
- 

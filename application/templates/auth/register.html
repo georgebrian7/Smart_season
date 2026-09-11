@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - SmartSeason</title>
-</head>
-<body>
-    <h1>Register</h1>
-
-    {% if messages %}
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Create account</button>
-    </form>
-
-    <p>Already have an account? <a href="/login/">Login</a></p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Register - SmartSeason{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h3 class="mb-3">Create an account</h3>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-success">Create account</button>
+        </form>
+        <hr>
+        <p class="small">Already have an account? <a href="{% url 'auth:login' %}">Login</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
